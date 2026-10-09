@@ -1,0 +1,85 @@
+{
+  "expo": {
+    "name": "CE Staff",
+    "slug": "courier-express-staff",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F172A"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.courierexpress.staff",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Ứng dụng dùng camera để quét mã vận đơn (kho, kiểm kê, bảng kê, giao hàng) và chụp ảnh bằng chứng, ảnh khiếu nại.",
+        "NSLocationWhenInUseUsageDescription": "Ứng dụng dùng vị trí để điều phối đơn hàng và chỉ đường giao hàng.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Với tài khoản shipper: ứng dụng gửi vị trí khi bạn bật 'Đang làm việc' để điều phối viên theo dõi lộ trình, kể cả khi ứng dụng chạy nền.",
+        "UIBackgroundModes": [
+          "location"
+        ],
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        },
+        "NSPhotoLibraryUsageDescription": "Ứng dụng cần chọn ảnh để đính kèm vào khiếu nại."
+      }
+    },
+    "android": {
+      "package": "com.courierexpress.staff",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#13213F"
+      },
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "VIBRATE"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Ứng dụng dùng camera để quét mã vận đơn và chụp ảnh bằng chứng giao hàng."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Ứng dụng cần chọn ảnh để đính kèm vào khiếu nại.",
+          "cameraPermission": "Ứng dụng dùng camera để chụp ảnh bằng chứng giao hàng và ảnh khiếu nại."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Ứng dụng gửi vị trí khi bạn bật 'Đang làm việc' để điều phối viên theo dõi lộ trình.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true,
+          "isIosBackgroundLocationEnabled": true
+        }
+      ],
+      "expo-secure-store",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "defaultServerUrl": "http://192.168.1.10:5180"
+    }
+  }
+}
