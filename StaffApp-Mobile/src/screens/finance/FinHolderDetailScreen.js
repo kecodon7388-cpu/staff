@@ -44,6 +44,7 @@ export default function FinHolderDetailScreen({ route, navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <FlatList
+        removeClippedSubviews={false}
         data={data.items}
         keyExtractor={(o) => String(o.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 230 }}
@@ -66,7 +67,7 @@ export default function FinHolderDetailScreen({ route, navigation }) {
             style={[styles.item, sel.has(o.id) && { borderColor: colors.brand }, o.inRemittance && { opacity: 0.6 }]}>
             {o.inRemittance ? <View style={{ width: 22 }} /> : <Check on={sel.has(o.id)} />}
             <View style={{ flex: 1 }}>
-              <Text style={styles.code}>{o.trackingCode}</Text>
+              <Text style={styles.code} numberOfLines={1}>{o.trackingCode}</Text>
               <Text style={styles.sub} numberOfLines={1}>{[o.receiver, o.shop, dt(o.deliveredAt)].filter(Boolean).join(' · ')}</Text>
               {o.inRemittance ? <Badge text="Đã nằm trong phiếu nộp" fg={colors.info} bg={colors.infoBg} style={{ marginTop: 5 }} /> : null}
             </View>

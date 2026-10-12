@@ -47,6 +47,7 @@ export default function OrderLookupScreen({ navigation, route, embedded }) {
         <Chips style={{ marginTop: 10 }} items={ORDER_STATUS} value={status} onChange={setStatus} />
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(o) => String(o.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}
@@ -58,7 +59,7 @@ export default function OrderLookupScreen({ navigation, route, embedded }) {
           <Pressable onPress={() => navigation.navigate('StaffOrderDetail', { id: o.id })} style={styles.item}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <View style={{ flex: 1 }}>
-                <Text style={styles.code}>{o.trackingCode}</Text>
+                <Text style={styles.code} numberOfLines={1}>{o.trackingCode}</Text>
                 {o.referenceCode ? <Text style={styles.ref}>Mã shop: {o.referenceCode}</Text> : null}
               </View>
               <StatusBadge status={o.status} text={o.statusText} />

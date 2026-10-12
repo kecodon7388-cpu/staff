@@ -71,6 +71,7 @@ export default function WhScanScreen({ navigation }) {
 
   return (
     <FlatList
+        removeClippedSubviews={false}
       style={{ flex: 1, backgroundColor: colors.bg }}
       data={log}
       keyExtractor={(x) => x.t + x.code}
@@ -82,7 +83,7 @@ export default function WhScanScreen({ navigation }) {
           style={[styles.row, { borderLeftColor: item.ok ? colors.success : colors.danger }]}>
           <Ionicons name={item.ok ? 'checkmark-circle' : 'close-circle'} size={20} color={item.ok ? colors.success : colors.danger} />
           <View style={{ flex: 1 }}>
-            <Text style={styles.code}>{item.code}</Text>
+            <Text style={styles.code} numberOfLines={1}>{item.code}</Text>
             <Text style={[styles.msg, !item.ok && { color: colors.danger }]}>{item.message}</Text>
           </View>
           <Text style={styles.time}>{SCAN_OPS.find((o) => o.key === item.op)?.label} · {dt(new Date(item.t).toISOString())}</Text>

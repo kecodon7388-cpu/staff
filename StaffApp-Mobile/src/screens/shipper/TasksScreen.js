@@ -68,6 +68,7 @@ export default function TasksScreen({ navigation, route }) {
       {error ? <Text style={styles.error}>{error}</Text> : null}
       {filtered == null ? <Loading /> : (
         <FlatList
+        removeClippedSubviews={false}
           data={filtered}
           keyExtractor={(i) => String(i.assignmentId)}
           contentContainerStyle={{ padding: 16, paddingBottom: 40 }}

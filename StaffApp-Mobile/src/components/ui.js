@@ -353,7 +353,9 @@ export const HBar = ({ label, value, max, color = colors.brand, right }) => (
 
 /** Ô chọn (checkbox tròn) cho danh sách chọn nhiều */
 export const Check = ({ on, size = 22 }) => (
-  <Ionicons name={on ? 'checkmark-circle' : 'ellipse-outline'} size={size} color={on ? colors.brand : colors.faint} />
+  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+    <Ionicons name={on ? 'checkmark-circle' : 'ellipse-outline'} size={size} color={on ? colors.brand : colors.faint} />
+  </View>
 );
 
 /** Mở bản đồ tại tọa độ (Google Maps / Apple Maps) */

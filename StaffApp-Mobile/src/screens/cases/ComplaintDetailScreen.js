@@ -125,7 +125,7 @@ export default function ComplaintDetailScreen({ route, navigation }) {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
         <Card>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <Text style={styles.code}>{c.code}</Text>
+            <Text style={styles.code} numberOfLines={1}>{c.code}</Text>
             <CaseBadge status={c.status} text={c.statusText} />
             <Text style={styles.type}>{c.typeText}</Text>
           </View>
@@ -153,7 +153,7 @@ export default function ComplaintDetailScreen({ route, navigation }) {
             <Card onPress={canReadOrders ? () => navigation.navigate('StaffOrderDetail', { id: c.order.id }) : undefined}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View style={{ flex: 1 }}>
-                  <Text style={styles.oCode}>{c.order.trackingCode}</Text>
+                  <Text style={styles.oCode} numberOfLines={1}>{c.order.trackingCode}</Text>
                   <Text style={styles.oSub}>{c.order.statusText} · {c.order.receiver}</Text>
                   <Text style={styles.oSub}>Khai giá {money(c.order.declaredValue)} · COD {money(c.order.codAmount)} · cước {money(c.order.totalFee)}{c.order.hasInsurance ? ' · có bảo hiểm' : ''}</Text>
                 </View>

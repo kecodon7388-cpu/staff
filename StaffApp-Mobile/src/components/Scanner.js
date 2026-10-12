@@ -134,7 +134,7 @@ export function ScanModal({ visible, title = 'Quét mã vận đơn', onClose, o
               {log.slice(0, 8).map((x) => (
                 <View key={x.t + x.code} style={styles.logRow}>
                   <Ionicons name={x.ok ? 'checkmark-circle' : 'close-circle'} size={16} color={x.ok ? '#4ADE80' : '#F87171'} />
-                  <Text style={styles.logCode}>{x.code}</Text>
+                  <Text style={styles.logCode} numberOfLines={1}>{x.code}</Text>
                   <Text style={styles.logMsg} numberOfLines={1}>{x.message}</Text>
                 </View>
               ))}

@@ -37,6 +37,7 @@ export default function WhIncidentsScreen({ navigation }) {
           ...INCIDENT_TYPES.map((t) => ({ ...t, count: data ? data.filter((x) => x.type === t.key).length : undefined }))]} />
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(x) => String(x.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}
@@ -49,7 +50,7 @@ export default function WhIncidentsScreen({ navigation }) {
               <View style={[styles.icon, { backgroundColor: c.bg }]}><Ionicons name={INCIDENT_TYPES.find((t) => t.key === x.type)?.icon || 'warning-outline'} size={18} color={c.fg} /></View>
               <View style={{ flex: 1 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                  <Text style={styles.code}>{x.trackingCode}</Text>
+                  <Text style={styles.code} numberOfLines={1}>{x.trackingCode}</Text>
                   <CaseBadge status={x.type} text={x.typeText} />
                 </View>
                 {x.note ? <Text style={styles.note}>{x.note}</Text> : null}

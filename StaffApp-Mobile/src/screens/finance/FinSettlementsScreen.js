@@ -37,6 +37,7 @@ export default function FinSettlementsScreen({ navigation, route }) {
         <Chips style={{ marginTop: 10 }} items={SETTLE_STATUS} value={status} onChange={setStatus} />
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(s) => String(s.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}
@@ -45,7 +46,7 @@ export default function FinSettlementsScreen({ navigation, route }) {
         renderItem={({ item: s }) => (
           <Pressable onPress={() => navigation.navigate('FinSettlementDetail', { id: s.id })} style={styles.item}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-              <Text style={styles.code}>{s.code}</Text>
+              <Text style={styles.code} numberOfLines={1}>{s.code}</Text>
               <CaseBadge status={s.status} text={s.statusText} />
               <Text style={[styles.net, { color: s.net >= 0 ? colors.success : colors.danger }]}>{money(s.net)}</Text>
             </View>

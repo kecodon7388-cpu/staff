@@ -70,7 +70,7 @@ export default function DispatchShipperDetailScreen({ route, navigation }) {
           <Pressable key={t.type + t.orderId} onPress={() => navigation.navigate('StaffOrderDetail', { id: t.orderId })} style={styles.task}>
             <View style={[styles.tIcon, { backgroundColor: m.bg }]}><Ionicons name={m.icon} size={17} color={m.color} /></View>
             <View style={{ flex: 1 }}>
-              <Text style={styles.tCode}>{t.trackingCode}</Text>
+              <Text style={styles.tCode} numberOfLines={1}>{t.trackingCode}</Text>
               <Text style={styles.tSub} numberOfLines={1}>{[t.typeText, t.contact, t.district, t.statusText].filter(Boolean).join(' · ')}</Text>
             </View>
             {t.amountToCollect > 0 ? <Text style={styles.tAmt}>{money(t.amountToCollect)}</Text> : null}
@@ -87,7 +87,7 @@ export default function DispatchShipperDetailScreen({ route, navigation }) {
             <Pressable key={i} onPress={() => navigation.navigate('StaffOrderDetail', { id: d.orderId })} style={[styles.done, i < s.done.length - 1 && styles.border]}>
               <Ionicons name={d.result === 'Completed' ? 'checkmark-circle' : 'close-circle'} size={18} color={d.result === 'Completed' ? colors.success : colors.danger} />
               <View style={{ flex: 1 }}>
-                <Text style={styles.tCode}>{d.trackingCode}</Text>
+                <Text style={styles.tCode} numberOfLines={1}>{d.trackingCode}</Text>
                 <Text style={styles.tSub}>{d.typeText} · {d.resultText}</Text>
               </View>
               <Text style={styles.time}>{dt(d.time)}</Text>

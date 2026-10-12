@@ -56,7 +56,7 @@ export default function ReturnDetailScreen({ route, navigation }) {
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}>
         <Card>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <Text style={styles.code}>{r.code}</Text>
+            <Text style={styles.code} numberOfLines={1}>{r.code}</Text>
             <CaseBadge status={r.status} text={r.statusText} />
             {r.isAuto ? <Text style={styles.auto}>Tự động</Text> : null}
           </View>

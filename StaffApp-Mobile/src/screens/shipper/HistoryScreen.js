@@ -39,6 +39,7 @@ export default function HistoryScreen({ navigation }) {
       </ScrollView>
       {items == null ? <Loading /> : (
         <FlatList
+        removeClippedSubviews={false}
           data={items}
           keyExtractor={(i, idx) => `${i.orderId}-${idx}`}
           contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
@@ -51,7 +52,7 @@ export default function HistoryScreen({ navigation }) {
               <Pressable onPress={() => navigation.navigate('Order', { id: item.orderId })} style={styles.item}>
                 <View style={[styles.icon, { backgroundColor: m.bg }]}><Ionicons name={m.icon} size={18} color={m.color} /></View>
                 <View style={{ flex: 1 }}>
-                  <Text style={styles.code}>{item.trackingCode}</Text>
+                  <Text style={styles.code} numberOfLines={1}>{item.trackingCode}</Text>
                   <Text style={styles.sub} numberOfLines={1}>{m.label} · {item.receiver} · {dt(item.time)}</Text>
                 </View>
                 <View style={{ alignItems: 'flex-end' }}>

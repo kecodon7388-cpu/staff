@@ -41,6 +41,7 @@ export default function WhManifestsScreen({ navigation, route }) {
         <WarehouseField value={wh?.id} onChange={setWh} allowClear label={null} style={{ marginTop: 10, marginBottom: 0 }} />
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(m) => String(m.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}
@@ -53,7 +54,7 @@ export default function WhManifestsScreen({ navigation, route }) {
                 <Ionicons name={m.type === 'Transfer' ? 'bus-outline' : 'bicycle-outline'} size={18} color={m.type === 'Transfer' ? colors.violet : colors.brand} />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={styles.code}>{m.code}</Text>
+                <Text style={styles.code} numberOfLines={1}>{m.code}</Text>
                 <Text style={styles.sub}>{m.typeText}</Text>
               </View>
               <CaseBadge status={m.status} text={m.statusText} />

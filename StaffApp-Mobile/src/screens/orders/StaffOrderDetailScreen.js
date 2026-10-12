@@ -26,7 +26,7 @@ export default function StaffOrderDetailScreen({ route, navigation }) {
       <Card>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.code}>{o.trackingCode}</Text>
+            <Text style={styles.code} numberOfLines={1}>{o.trackingCode}</Text>
             <Text style={styles.sub}>{[o.service, o.shop, o.referenceCode ? 'Mã shop ' + o.referenceCode : null].filter(Boolean).join(' · ')}</Text>
           </View>
           <StatusBadge status={o.status} text={o.statusText} />

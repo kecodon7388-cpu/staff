@@ -36,6 +36,7 @@ export default function DispatchShippersScreen({ navigation }) {
         ]} />
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(s) => String(s.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}

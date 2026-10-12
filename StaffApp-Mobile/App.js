@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import * as Font from 'expo-font';
 import { Platform, StyleSheet, View } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -178,15 +179,32 @@ function Root() {
   );
 }
 
+/** Nạp sẵn font biểu tượng trước khi vẽ giao diện (tránh icon trống & lệch bố cục trên bản APK) */
+function useIconFont() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    const t = setTimeout(() => alive && setReady(true), 6000);
+    Font.loadAsync(Ionicons.font)
+      .catch((e) => console.warn('Không nạp được font biểu tượng', e))
+      .finally(() => { clearTimeout(t); if (alive) setReady(true); });
+    return () => { alive = false; clearTimeout(t); };
+  }, []);
+  return ready;
+}
+
 export default function App() {
+  const fontReady = useIconFont();
   return (
     <SafeAreaProvider>
-      <AuthProvider>
-        <NavigationContainer theme={navTheme}>
-          <StatusBar style="dark" />
-          <Root />
-        </NavigationContainer>
-      </AuthProvider>
+      {!fontReady ? <Loading /> : (
+        <AuthProvider>
+          <NavigationContainer theme={navTheme}>
+            <StatusBar style="dark" />
+            <Root />
+          </NavigationContainer>
+        </AuthProvider>
+      )}
     </SafeAreaProvider>
   );
 }

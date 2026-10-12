@@ -33,6 +33,7 @@ export default function FinRemittanceDetailScreen({ route, navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <FlatList
+        removeClippedSubviews={false}
         data={data.items}
         keyExtractor={(o) => String(o.id)}
         contentContainerStyle={{ padding: 16, paddingBottom: actionable ? 160 : 40 }}
@@ -41,7 +42,7 @@ export default function FinRemittanceDetailScreen({ route, navigation }) {
           <View>
             <Card style={{ backgroundColor: colors.navy, borderColor: colors.navy }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={styles.code}>{r.code}</Text>
+                <Text style={styles.code} numberOfLines={1}>{r.code}</Text>
                 <CaseBadge status={r.status} text={r.statusText} style={{ marginLeft: 'auto' }} />
               </View>
               <Text style={styles.amt}>{money(r.amount)}</Text>
@@ -58,7 +59,7 @@ export default function FinRemittanceDetailScreen({ route, navigation }) {
         renderItem={({ item: o }) => (
           <Pressable onPress={() => navigation.navigate('StaffOrderDetail', { id: o.id })} style={styles.item}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.iCode}>{o.trackingCode}</Text>
+              <Text style={styles.iCode} numberOfLines={1}>{o.trackingCode}</Text>
               <Text style={styles.iSub} numberOfLines={1}>{[o.receiver, o.shop, dt(o.deliveredAt)].filter(Boolean).join(' · ')}</Text>
             </View>
             <Text style={styles.iAmt}>{money(o.amount)}</Text>

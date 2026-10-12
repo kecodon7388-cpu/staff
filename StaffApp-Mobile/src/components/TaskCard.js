@@ -15,7 +15,7 @@ export default function TaskCard({ item, onPress }) {
       <View style={{ flex: 1, padding: 14, paddingLeft: 16 }}>
         <View style={styles.top}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.code}>{item.trackingCode}</Text>
+            <Text style={styles.code} numberOfLines={1}>{item.trackingCode}</Text>
             {item.referenceCode ? <Text style={styles.ref}>Mã shop: {item.referenceCode}</Text> : null}
           </View>
           <StatusBadge status={item.status} text={item.statusText} />

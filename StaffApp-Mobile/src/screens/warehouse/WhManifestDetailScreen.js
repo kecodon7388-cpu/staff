@@ -63,6 +63,7 @@ export default function WhManifestDetailScreen({ route, navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <FlatList
+        removeClippedSubviews={false}
         data={data.items}
         keyExtractor={(it) => String(it.itemId)}
         contentContainerStyle={{ padding: 16, paddingBottom: 160 }}
@@ -72,7 +73,7 @@ export default function WhManifestDetailScreen({ route, navigation }) {
             <Card>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <View style={{ flex: 1 }}>
-                  <Text style={styles.code}>{m.code}</Text>
+                  <Text style={styles.code} numberOfLines={1}>{m.code}</Text>
                   <Text style={styles.sub}>{m.typeText}</Text>
                 </View>
                 <CaseBadge status={m.status} text={m.statusText} />
@@ -99,7 +100,7 @@ export default function WhManifestDetailScreen({ route, navigation }) {
           <Pressable onPress={() => navigation.navigate('StaffOrderDetail', { id: it.orderId })} style={styles.item}>
             <Ionicons name={it.receivedAt ? 'checkmark-circle' : 'cube-outline'} size={20} color={it.receivedAt ? colors.success : colors.muted} />
             <View style={{ flex: 1 }}>
-              <Text style={styles.itemCode}>{it.trackingCode}</Text>
+              <Text style={styles.itemCode} numberOfLines={1}>{it.trackingCode}</Text>
               <Text style={styles.itemSub} numberOfLines={1}>{[it.receiver, it.province, it.weight != null ? it.weight + ' kg' : null].filter(Boolean).join(' · ')}</Text>
               {it.receivedAt ? <Text style={[styles.itemSub, { color: colors.success }]}>Đã nhận {dt(it.receivedAt)}</Text> : null}
             </View>

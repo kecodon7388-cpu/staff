@@ -24,6 +24,7 @@ export default function FinHoldersScreen({ navigation }) {
         {data ? <Text style={styles.sum}>{data.length} shipper · tổng {money(total)}{alertAmount ? ` · ngưỡng ${money(alertAmount)}` : ''}</Text> : null}
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(h) => String(h.shipperId)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}

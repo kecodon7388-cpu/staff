@@ -25,6 +25,7 @@ export default function ReturnsScreen({ navigation, route }) {
         <Chips style={{ marginTop: 10 }} items={chips} value={status} onChange={setStatus} />
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(r) => String(r.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}
@@ -33,7 +34,7 @@ export default function ReturnsScreen({ navigation, route }) {
         renderItem={({ item: r }) => (
           <Pressable onPress={() => navigation.navigate('ReturnDetail', { id: r.id })} style={styles.item}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-              <Text style={styles.code}>{r.trackingCode}</Text>
+              <Text style={styles.code} numberOfLines={1}>{r.trackingCode}</Text>
               <CaseBadge status={r.status} text={r.statusText} />
               {r.isAuto ? <Text style={styles.auto}>Tự động</Text> : null}
             </View>

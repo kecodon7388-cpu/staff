@@ -53,6 +53,7 @@ export default function ComplaintsScreen({ navigation, route }) {
         <Chips style={{ marginTop: 10 }} items={chips} value={filter} onChange={setFilter} />
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(x) => String(x.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}
@@ -61,7 +62,7 @@ export default function ComplaintsScreen({ navigation, route }) {
         renderItem={({ item: x }) => (
           <Pressable onPress={() => navigation.navigate('ComplaintDetail', { id: x.id })} style={styles.item}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-              <Text style={styles.code}>{x.code}</Text>
+              <Text style={styles.code} numberOfLines={1}>{x.code}</Text>
               <CaseBadge status={x.status} text={x.statusText} />
               <Text style={[styles.age, x.ageHours > 48 && x.status !== 'Closed' && { color: colors.danger }]}>
                 {x.ageHours < 24 ? `${x.ageHours} giờ` : `${Math.floor(x.ageHours / 24)} ngày`}

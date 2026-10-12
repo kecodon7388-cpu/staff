@@ -26,6 +26,7 @@ export default function NotificationsScreen({ navigation }) {
 
   return (
     <FlatList
+        removeClippedSubviews={false}
       style={{ flex: 1, backgroundColor: colors.bg }}
       data={list || []}
       keyExtractor={(n) => String(n.id)}

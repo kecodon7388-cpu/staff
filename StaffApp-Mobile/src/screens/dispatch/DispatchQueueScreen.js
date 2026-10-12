@@ -104,6 +104,7 @@ export default function DispatchQueueScreen({ navigation, route }) {
         </View>
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(o) => String(o.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 130 }}
@@ -116,9 +117,9 @@ export default function DispatchQueueScreen({ navigation, route }) {
               style={[styles.item, on && { borderColor: colors.brand, backgroundColor: '#F8FBFF' }]}>
               <Check on={on} />
               <View style={{ flex: 1 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                  <Text style={styles.code}>{o.trackingCode}</Text>
-                  {o.district ? <Text style={styles.district}>{o.district}</Text> : null}
+                <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
+                  <Text style={styles.code} numberOfLines={1}>{o.trackingCode}</Text>
+                  {o.district ? <Text style={styles.district} numberOfLines={1}>{o.district}</Text> : null}
                 </View>
                 <Text style={styles.name} numberOfLines={1}>{o.contactName} · {o.contactPhone}</Text>
                 <Text style={styles.addr} numberOfLines={2}>{o.address}</Text>
@@ -126,7 +127,7 @@ export default function DispatchQueueScreen({ navigation, route }) {
                 {o.shipper ? <Text style={[styles.meta, { color: colors.brand600 }]}>Đang giao cho: {o.shipper}</Text> : null}
                 {o.failedAttempts > 0 ? <Text style={[styles.meta, { color: colors.warning }]}>Giao lỗi {o.failedAttempts} lần{o.lastFailReason ? ': ' + o.lastFailReason : ''}{o.nextDeliveryDate ? ' · hẹn ' + date(o.nextDeliveryDate) : ''}</Text> : null}
               </View>
-              <View style={{ alignItems: 'flex-end', gap: 6 }}>
+              <View style={{ alignItems: 'flex-end', gap: 6, minWidth: 24 }}>
                 {o.codAmount > 0 ? <Text style={styles.cod}>{money(o.codAmount)}</Text> : null}
                 <Pressable onPress={() => navigation.navigate('StaffOrderDetail', { id: o.id })} hitSlop={8}><Ionicons name="information-circle-outline" size={20} color={colors.faint} /></Pressable>
               </View>

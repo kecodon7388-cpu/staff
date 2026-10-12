@@ -56,6 +56,7 @@ export default function FinSettlementDetailScreen({ route, navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <FlatList
+        removeClippedSubviews={false}
         data={data.items}
         keyExtractor={(i) => String(i.orderId)}
         contentContainerStyle={{ padding: 16, paddingBottom: a.length ? 160 : 40 }}
@@ -92,7 +93,7 @@ export default function FinSettlementDetailScreen({ route, navigation }) {
                   {data.payments.map((p, i) => (
                     <View key={p.code} style={[styles.pay, i < data.payments.length - 1 && styles.border]}>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.iCode}>{p.code}</Text>
+                        <Text style={styles.iCode} numberOfLines={1}>{p.code}</Text>
                         <Text style={styles.iSub}>{p.directionText} · {p.methodText}{p.bankRef ? ' · ' + p.bankRef : ''} · {dt(p.paidAt)}</Text>
                       </View>
                       <Text style={styles.iAmt}>{money(p.amount)}</Text>
@@ -107,7 +108,7 @@ export default function FinSettlementDetailScreen({ route, navigation }) {
         renderItem={({ item: i }) => (
           <Pressable onPress={() => navigation.navigate('StaffOrderDetail', { id: i.orderId })} style={styles.item}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.iCode}>{i.trackingCode}</Text>
+              <Text style={styles.iCode} numberOfLines={1}>{i.trackingCode}</Text>
               <Text style={styles.iSub}>{i.statusText} · COD {money(i.cod)} · cước {money(i.fee)}{i.surcharge ? ` · PP ${money(i.surcharge)}` : ''}{i.returnFee ? ` · hoàn ${money(i.returnFee)}` : ''}</Text>
             </View>
             <Text style={[styles.iAmt, { color: i.net >= 0 ? colors.text : colors.danger }]}>{money(i.net)}</Text>

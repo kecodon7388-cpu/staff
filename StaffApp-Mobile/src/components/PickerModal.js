@@ -55,6 +55,7 @@ export default function PickerModal({
         </View>
         {error ? <Text style={styles.err}>{error}</Text> : null}
         <FlatList
+        removeClippedSubviews={false}
           data={list}
           keyExtractor={(it, i) => String(getKey(it) ?? i)}
           keyboardShouldPersistTaps="handled"

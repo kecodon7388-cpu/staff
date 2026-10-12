@@ -39,6 +39,7 @@ export default function WhInventoryScreen({ navigation, route }) {
       {header}
       {error && data ? <ErrorBox text={error} onRetry={reload} style={{ margin: 12, marginBottom: 0 }} /> : null}
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(o) => String(o.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}
@@ -56,7 +57,7 @@ export default function WhInventoryScreen({ navigation, route }) {
                 <Text style={[styles.daysLbl, { color: c }]}>ngày</Text>
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={styles.code}>{o.trackingCode}</Text>
+                <Text style={styles.code} numberOfLines={1}>{o.trackingCode}</Text>
                 <Text style={styles.sub} numberOfLines={1}>{[o.warehouse, o.location ? 'Ô ' + o.location : null].filter(Boolean).join(' · ')}</Text>
                 <Text style={styles.sub} numberOfLines={1}>{[o.statusText, o.shop, o.province].filter(Boolean).join(' · ')}</Text>
               </View>

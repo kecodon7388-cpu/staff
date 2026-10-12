@@ -22,6 +22,7 @@ export default function FinRemittancesScreen({ navigation, route }) {
         {data?.length ? <Text style={styles.sum}>{data.length} phiếu · {money(sum)}</Text> : null}
       </View>
       <FlatList
+        removeClippedSubviews={false}
         data={list || []}
         keyExtractor={(r) => String(r.id)}
         contentContainerStyle={{ padding: 12, paddingBottom: 40 }}
@@ -31,7 +32,7 @@ export default function FinRemittancesScreen({ navigation, route }) {
           <Pressable onPress={() => navigation.navigate('FinRemittanceDetail', { id: r.id })} style={styles.item}>
             <View style={{ flex: 1 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                <Text style={styles.code}>{r.code}</Text>
+                <Text style={styles.code} numberOfLines={1}>{r.code}</Text>
                 <CaseBadge status={r.status} text={r.statusText} />
               </View>
               <Text style={styles.sub}>{r.shipper} ({r.shipperCode}) · {r.count} đơn</Text>

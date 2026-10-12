@@ -38,6 +38,7 @@ export default function CodScreen({ navigation }) {
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <StatusBar style="light" />
       <FlatList
+        removeClippedSubviews={false}
         data={d.held}
         keyExtractor={(i) => String(i.orderId)}
         ListHeaderComponent={header}
@@ -47,7 +48,7 @@ export default function CodScreen({ navigation }) {
           <Pressable onPress={() => navigation.navigate('Order', { id: item.orderId })} style={styles.item}>
             <View style={styles.itemIcon}><Ionicons name="cash" size={18} color={colors.success} /></View>
             <View style={{ flex: 1 }}>
-              <Text style={styles.itemCode}>{item.trackingCode}</Text>
+              <Text style={styles.itemCode} numberOfLines={1}>{item.trackingCode}</Text>
               <Text style={styles.itemSub}>{item.receiver} · {dt(item.deliveredAt)}</Text>
             </View>
             <View style={{ alignItems: 'flex-end', gap: 4 }}>
@@ -65,7 +66,7 @@ export default function CodScreen({ navigation }) {
                 {d.remittances.map((r, i) => (
                   <View key={r.code} style={[styles.rem, i < d.remittances.length - 1 && { borderBottomWidth: 1, borderBottomColor: '#EEF1F6' }]}>
                     <View style={{ flex: 1 }}>
-                      <Text style={styles.itemCode}>{r.code}</Text>
+                      <Text style={styles.itemCode} numberOfLines={1}>{r.code}</Text>
                       <Text style={styles.itemSub}>{r.orderCount} đơn · {dt(r.createdAt)}</Text>
                     </View>
                     <View style={{ alignItems: 'flex-end', gap: 4 }}>
